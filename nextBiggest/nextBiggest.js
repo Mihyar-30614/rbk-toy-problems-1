@@ -70,3 +70,17 @@ function nextBigger(num){
 	var x = parseInt(num.toString().split("").sort().reverse().join(""));
 	return x === num? -1 : x;
 };
+
+function nextBigger(num) {
+	var x = num.toString().split("");
+	if (x.length>1) {
+		var last = x[x.lastength-1];
+		var blast = x[x.length-2];
+		x[x.length-1] = blast;
+		x[x.length-2] = last;
+		var y = x.join("");
+		return parseInt(y) <= num? -1 : parseInt(y);
+	}else{
+		return -1;
+	}
+}
