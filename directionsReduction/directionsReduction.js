@@ -65,3 +65,46 @@ var dirReduc = function(directions){
 	return dir;
 };
 
+// RBK Solution 
+var dirReduc = function(directions){
+  //Create an object that matches the direction with the opposite direction.
+  //Object is chosen because it consists of key-value pairs
+  //We can use directions as keys and opposite directions as values
+  var opposite = {
+    'NORTH': 'SOUTH', 
+    'SOUTH': 'NORTH',
+    'EAST': 'WEST', 
+    'WEST': 'EAST'};
+  
+  //We can use forEach to go through directions and populate the result array.
+  //EXTRA PRACTICE: try to use reduce function instead
+  var result = [];
+  directions.forEach(function(currentDir){
+    //If last direction that we added to result is the opposite of current direction,
+    //we need to cancel the last added direction
+    if (result[result.length - 1] === opposite[currentDir]){
+      result.pop();
+    } else {
+      //Otherwise, add the current direction to the path
+      result.push(currentDir);
+    }
+  });
+  return result;
+};
+
+// With reduce function 
+var dirReduc = function (directions) {
+	var opposite = {
+		'NORTH':'SOUTH',
+		'SOUTH':'NORTH',
+		'EAST':'WEST',
+		'WEST':'EAST'
+	};
+	return directions.reduce(function(dirs, dir){
+		if (dirs[dirs.length -1] === opposite[dir])
+			dirs.pop();
+		else
+			dirs.push(dir);
+			return dirs;
+	},[])
+}
